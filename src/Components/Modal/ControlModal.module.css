@@ -1,0 +1,12 @@
+.box{
+    width:fit-content;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+}
+.box span {
+    position: relative;
+}
+.box span:hover {
+    color: green;
+}

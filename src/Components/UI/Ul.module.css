@@ -1,0 +1,9 @@
+.listBox{
+    padding: 0px 2px;
+    border-bottom: 1px solid #d1d1d1;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+}

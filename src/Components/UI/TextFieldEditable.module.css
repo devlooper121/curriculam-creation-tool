@@ -1,0 +1,19 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+
+.p{
+    font-size: unset;
+    font-weight: 300;
+    margin-left: 100px;
+}
+
+.input{
+    margin-left: 100px;
+    border: none;
+    outline: none;
+    font-size: unset;
+    font-weight: 300;
+}
