@@ -1,24 +1,14 @@
-import React, { useRef, useState } from "react"
+import React, { useRef} from "react"
 import TextFieldEditable from "../UI/TextFieldEditable"
 import Ul from "../UI/Ul"
 import styles from "./Main.module.css"
 import Button from "../UI/Button"
-import { nanoid } from "nanoid";
 import DataList from "./DataList"
 
 import { useSelector, useDispatch } from "react-redux"
 
-
-function DataModal(value = "", indent = 1, children = []) {
-    this.value = value;
-    this.indent = indent;
-    this.children = children;
-    this.id = nanoid();
-}
-
 const Main = () => {
     const { listData, heading } = useSelector(state => state);
-    const [jsonFile,  setJsonFile] = useState("");
     const inputFileRef = useRef();
     // console.log(listData);
     const dispatch = useDispatch();

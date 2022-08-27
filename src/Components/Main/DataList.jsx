@@ -17,10 +17,6 @@ const DataList = (props) => {
     const deleteMe = () => {
         dispatch({type:"DELETE", payload:props.id})
     }
-
-    const dragStartHandler = (e)=>{
-        console.log(e.target);
-    }
     
     return(
         <Ul 

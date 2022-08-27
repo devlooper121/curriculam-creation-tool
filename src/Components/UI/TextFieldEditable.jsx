@@ -18,7 +18,7 @@ const TextFieldEditable = (props) => {
     }
     const clickHandler = () => {
         setEditable(state => !state);
-        if(data==""){
+        if(data===""){
             setData(props.default)
         }
     }
