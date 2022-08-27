@@ -1,5 +1,43 @@
+*{
+    font-family: 'roboto', sans-serif;
+}
+.btnContainer{
+    display: flex;
+}
+.addBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 150ms ease-in-out;
+    margin-top: 20px;
+    font-size: 1.2rem;
+}
+.addBtn:hover{
+    box-shadow: 2px 2px 10px 0px #777;
+    background-color: #1a73e8;
+    color: white;
+}
+.addBtn span {
+    margin: 0 5px;
+    font-size: .9rem;
+}
+.exportBtn{
+    min-width: fit-content;
+    padding: 10px;
+    margin: 10px 5px;
+    font-size: .9rem;
+}
+
+.main{
+    margin: 20px;
+}
 .heading{
-    color: #ccc;
+    justify-content: space-between;
+}
+
+
+.headingTxt{
+    color: #aaa;
     margin: 0 0 10px 0;
     font-weight: 700;
     letter-spacing: 1px;
@@ -15,11 +53,13 @@
 }
 
 .action span , .detail span {
-    font-weight: 200;
-    font-size: .8rem;
+    font-weight: 500;
+    font-size: .7rem;
     color: #777;
 }
 
 .detailsTab{
-    align-items: end;
+    align-items:flex-start;
+    padding: 10px 0;
 }
+

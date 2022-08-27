@@ -1,12 +1,20 @@
 import { useState } from "react"
 import styles from "./TextFieldEditable.module.css"
+import { useDispatch } from "react-redux";
 
 const TextFieldEditable = (props) => {
+    const dispatch = useDispatch();
     const [data, setData] = useState(props.value);
     const [editable, setEditable] = useState(false);
     const inputHandler = (e) => {
-        setData(props.setData(e.target.value));
+        setData(props.setData(e.target.value) || e.target.value);
+        if(props.id){
+            updateData(props.setData(e.target.value))
+        }
         
+    }
+    const updateData = (value) => {
+        dispatch({type:"UPDATE", payload:{id:props.id, value:value}})
     }
     const clickHandler = () => {
         setEditable(state => !state);
@@ -14,7 +22,7 @@ const TextFieldEditable = (props) => {
             setData(props.default)
         }
     }
-    console.log(props);
+    // console.log(props);
     return (
         !editable ? <p
             className={`${styles.p} ${props.className}`}

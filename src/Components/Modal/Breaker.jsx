@@ -1,18 +1,12 @@
 import { useState } from "react"
-
+import styles from "./Breaker.module.css"
 
 const BreakerBox = (props) => {
-    let styles = {
+    let style = {
         marginLeft:`${props.indent*20}px`,
-        width:'30px',
-        backgroundColor:"#0f02",
-        minHeight:"40px",
-        display:"flex",
-        alignItems:"center",
-        justifyContent:"center"
     }
 
-    return <div style={styles}>
+    return <div style={style} className={styles.box}>
         -
     </div>
 }

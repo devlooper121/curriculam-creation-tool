@@ -1,23 +1,93 @@
-import React from "react"
+import React, { useRef, useState } from "react"
 import TextFieldEditable from "../UI/TextFieldEditable"
 import Ul from "../UI/Ul"
 import styles from "./Main.module.css"
+import Button from "../UI/Button"
+import { nanoid } from "nanoid";
+import DataList from "./DataList"
+
+import { useSelector, useDispatch } from "react-redux"
+
+
+function DataModal(value = "", indent = 1, children = []) {
+    this.value = value;
+    this.indent = indent;
+    this.children = children;
+    this.id = nanoid();
+}
 
 const Main = () => {
-    let Heading = "HEADING";
-    console.log(styles.heading);
-    const capitalize = (data)=>{
+    const { listData, heading } = useSelector(state => state);
+    const [jsonFile,  setJsonFile] = useState("");
+    const inputFileRef = useRef();
+    // console.log(listData);
+    const dispatch = useDispatch();
+    const dragItem = useRef();
+    const dragOverItem = useRef();  
+
+    const addTaskHandler = () => {
+        dispatch({ type: "ADDDATA", payload: "New element" })
+    }
+
+    let Heading = heading;
+    // console.log(styles.heading);
+    const capitalize = (data) => {
         return data.trim().toUpperCase();
     }
+    const dragStart = (e, id) => {
+        dragItem.current = id;
+    }
+    const dragEnter = (e, id) => {
+        dragOverItem.current = id;
+    }
+    const drop = () => {
+        dispatch({ type: "SWAP", payload: { id1: dragItem.current, id2: dragOverItem.current } })
+    }
+    const downloadFile = () => {
+        dispatch({ type: "DOWNLOAD" });
+    }
+    const uploadFile = (e) => {
+        const fileReader = new FileReader();
+        let file = e.target.files[0];
+        console.log(file);
+        console.log("hh");
+        fileReader.readAsText(file, "UTF-8")
+        fileReader.onload = (e) =>{
+            console.log(e.target.result);
+            dispatch({ type: "UPLOAD", payload:e.target.result});
+        }
+        
+        
+    }
+    const clickOnInput = () => {
+        
+        inputFileRef.current.click()
+    }
     return (
-        <React.Fragment>
-            <Ul >
-                <TextFieldEditable 
-                    className={styles.heading}
+        <div className={styles.main}>
+            <Ul className={styles.heading} >
+                <TextFieldEditable
+                    className={styles.headingTxt}
                     value={Heading}
+                    id="HEAD"
                     setData={capitalize}
                     default="HEADING"
                 />
+                <div className={styles.btnContainer}>
+                    <Button
+                        className={`${styles.exportBtn} ${styles.addBtn}`}
+                        onClick={downloadFile}
+                    >
+                        <span className={`material-symbols-outlined`}>file_download</span>Export to Json
+                    </Button>
+                    <input ref={inputFileRef} onChange={uploadFile} type="file" accept="application/JSON" hidden/>
+                    <Button
+                        className={`${styles.exportBtn} ${styles.addBtn}`}
+                        onClick={clickOnInput}
+                    >
+                        <span className={`material-symbols-outlined`}>file_upload</span>Import Json
+                    </Button>
+                </div>
             </Ul>
             <Ul className={styles.detailsTab}>
                 <div className={styles.action}>
@@ -29,7 +99,25 @@ const Main = () => {
                     <span>The text of the standard</span>
                 </div>
             </Ul>
-        </React.Fragment>
+            {/* // lists  */}
+            {listData.map((data) => {
+                return <DataList
+                    key={data.id}
+                    value={data.value}
+                    indent={data.indent}
+                    id={data.id}
+                    onDragStart={(e) => dragStart(e, data.id)}
+                    onDragEnter={(e) => dragEnter(e, data.id)}
+                    onDragEnd={drop}
+                ></DataList>
+            })}
+            <Button
+                className={styles.addBtn}
+                onClick={addTaskHandler}
+            >
+                <span className={`material-symbols-outlined`}>add_circle</span> add
+            </Button>
+        </div>
     )
 }
 

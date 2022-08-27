@@ -8,6 +8,7 @@
     font-size: unset;
     font-weight: 300;
     margin-left: 100px;
+
 }
 
 .input{
@@ -16,4 +17,5 @@
     outline: none;
     font-size: unset;
     font-weight: 300;
+    min-width: 50%;
 }

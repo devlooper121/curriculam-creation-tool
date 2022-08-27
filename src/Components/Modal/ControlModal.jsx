@@ -3,19 +3,12 @@ import styles from "./ControlModal.module.css"
 
 const Control = (props) => {
 
-    const moveLeft= () => {
-
-    }
-    const deleteMe = () => {
-
-    }
-
     return (
         <div className={styles.box} >
-            <IconWithHoverMsg name="open_with" msg="Move" />
-            <IconWithHoverMsg name="arrow_back" msg="Outdent" onClick={moveLeft} />
+            <IconWithHoverMsg name="open_with" msg="Move" on />
+            <IconWithHoverMsg name="arrow_back" msg="Outdent" onClick={props.onOutdent} />
             <IconWithHoverMsg name="arrow_forward" msg="Indent" onClick={props.onIndent}/>
-            <IconWithHoverMsg name="delete" msg="Delete" onClick={deleteMe}/>
+            <IconWithHoverMsg name="delete" msg="Delete" onClick={props.onDelete}/>
             
         </div>
     )
