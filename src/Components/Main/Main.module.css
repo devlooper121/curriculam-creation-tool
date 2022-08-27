@@ -1,0 +1,25 @@
+.heading{
+    color: #ccc;
+    margin: 0 0 10px 0;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-size: 1.5rem;
+}
+.action{
+    max-width: 100px;
+    margin-right: 200px;
+}
+.action p , .detail p {
+    font-weight: 500;
+    font-size: .9rem;
+}
+
+.action span , .detail span {
+    font-weight: 200;
+    font-size: .8rem;
+    color: #777;
+}
+
+.detailsTab{
+    align-items: end;
+}

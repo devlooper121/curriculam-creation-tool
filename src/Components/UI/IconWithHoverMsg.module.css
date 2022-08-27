@@ -4,3 +4,8 @@
     height: fit-content;
     cursor: pointer;
 }
+
+.span span{
+    font-weight: 200;
+    color: #777;
+}
